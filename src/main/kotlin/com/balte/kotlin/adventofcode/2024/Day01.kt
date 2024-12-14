@@ -12,14 +12,14 @@ fun numListPair(): Pair<List<Long>, List<Long>> = readFileFromClasspath("/2024/d
     line.split(SPACE_SPLIT_REGEX).let { it[ZERO].toLong() to it[ONE].toLong() }
 }.unzip()
 
-fun partOne(listPair: Pair<List<Long>, List<Long>>): Long = listPair.let {
+fun part1(listPair: Pair<List<Long>, List<Long>>): Long = listPair.let {
     (it.first.sorted() to it.second.sorted()).let { sListPair ->
         sListPair.first.mapIndexed { index, num -> abs(num - sListPair.second[index]) }
             .sum()
     }
 }
 
-fun partTwo(listPair: Pair<List<Long>, List<Long>>): Long = listPair.let {pList ->
+fun part2(listPair: Pair<List<Long>, List<Long>>): Long = listPair.let { pList ->
     (pList.first.groupingBy { it }.eachCount() to pList.second.groupingBy { it }.eachCount()).let { pMap ->
         pMap.first.entries.map { e -> e.key * e.value * pMap.second[e.key].toOption().getOrElse { 0 } }.sum()
     }
@@ -27,7 +27,7 @@ fun partTwo(listPair: Pair<List<Long>, List<Long>>): Long = listPair.let {pList 
 
 fun main() {
     numListPair().let { listPair ->
-        partOne(listPair).also { println("Part One Answer: $it") }
-        partTwo(listPair).also { println("Part Two Answer: $it") }
+        part1(listPair).also { println("Part One Answer: $it") }
+        part2(listPair).also { println("Part Two Answer: $it") }
     }
 }

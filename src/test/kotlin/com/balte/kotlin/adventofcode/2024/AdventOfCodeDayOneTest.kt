@@ -17,7 +17,7 @@ class AdventOfCodeDayOneTest {
     @Test
     fun partOneTest() {
         numListPair.let { listPair ->
-            partOne(listPair).also { println("Part One Answer: $it") }
+            part1(listPair).also { println("Part One Answer: $it") }
         }.apply {
             assertTrue( this == answer[PART_ONE].toOption().getOrElse { ZERO }.toLong(), "Part One test failed")
         }
@@ -26,7 +26,7 @@ class AdventOfCodeDayOneTest {
     @Test
     fun partTwoTest() {
         numListPair.let { listPair ->
-            partTwo(listPair).also { println("Part Two Answer: $it") }
+            part2(listPair).also { println("Part Two Answer: $it") }
         }.apply {
             assertTrue( this == answer[PART_TWO].toOption().getOrElse { ZERO }.toLong(), "Part One test failed")
         }
