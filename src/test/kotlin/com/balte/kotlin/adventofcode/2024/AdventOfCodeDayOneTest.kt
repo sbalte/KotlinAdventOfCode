@@ -8,7 +8,7 @@ import com.balte.kotlin.adventofcode.util.AdventPart.PART_TWO
 import kotlin.test.Test
 import kotlin.test.assertTrue
 
-class AdventOfCode2024Test {
+class AdventOfCodeDayOneTest {
     private val numListPair by lazy { numListPair() }
     private val answer = mapOf(
         PART_ONE to 2375403.toLong(),
