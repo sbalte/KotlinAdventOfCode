@@ -10,9 +10,10 @@ import kotlin.math.abs
 
 object DayOne {
     fun numListPair(): Pair<List<Long>, List<Long>> =
-        readInputFileLine(AdventOfCodeDay.DAY_ONE).filter { it.isNotEmpty() }.map { line ->
-            line.split(SPACE_SPLIT_REGEX).let { it[ZERO].toLong() to it[ONE].toLong() }
-        }.unzip()
+        readInputFileLine(AdventOfCodeDay.DAY_ONE to AdventOfCodeYear.YEAR_2024)
+            .filter { it.isNotEmpty() }
+            .map { line -> line.split(SPACE_SPLIT_REGEX).let { it[ZERO].toLong() to it[ONE].toLong() }
+            }.unzip()
     fun partOne(listPair: Pair<List<Long>, List<Long>>): Long = listPair.let {
         (it.first.sorted() to it.second.sorted()).let { sListPair ->
             sListPair.first.mapIndexed { index, num -> abs(num - sListPair.second[index]) }
