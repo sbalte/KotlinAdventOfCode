@@ -1,9 +1,9 @@
 import AdventOfCodeConstant.ZERO
 import AdventPart.PART_ONE
 import AdventPart.PART_TWO
-import DayOne.numListPair
-import DayOne.part1
-import DayOne.part2
+import dec2024.DayOne.numListPair
+import dec2024.DayOne.part1
+import dec2024.DayOne.part2
 import arrow.core.getOrElse
 import arrow.core.toOption
 import kotlin.test.Test

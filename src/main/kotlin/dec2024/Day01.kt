@@ -1,9 +1,8 @@
+package dec2024
+
 import AdventOfCodeConstant.ONE
 import AdventOfCodeConstant.SPACE_SPLIT_REGEX
 import AdventOfCodeConstant.ZERO
-import DayOne.numListPair
-import DayOne.part1
-import DayOne.part2
 import FileUtil.readInputFileLine
 import arrow.core.getOrElse
 import arrow.core.toOption
@@ -28,8 +27,8 @@ object DayOne {
 }
 
 fun main() {
-    numListPair().let { listPair ->
-        part1(listPair).also { println("Part One Answer: $it") }
-        part2(listPair).also { println("Part Two Answer: $it") }
+    DayOne.numListPair().let { listPair ->
+        DayOne.part1(listPair).also { println("Part One Answer: $it") }
+        DayOne.part2(listPair).also { println("Part Two Answer: $it") }
     }
 }

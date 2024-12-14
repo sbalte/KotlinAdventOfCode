@@ -1,3 +1,5 @@
+package dec2024
+
 object DayTwo {
 
 }
