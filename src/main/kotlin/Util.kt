@@ -1,6 +1,9 @@
 @Suppress("unused")
 object FileUtil {
-    fun readFileFromClasspath(fileName: String): List<String> =
+    fun readInputFileLine(day: AdventOfCodeDay) = "/2024/day${day()}/input.txt".let {
+        readFileFromClasspath(it)
+    }
+    private fun readFileFromClasspath(fileName: String): List<String> =
         this::class.java.getResourceAsStream(fileName)!!.bufferedReader().readLines()
 }
 
@@ -12,3 +15,7 @@ object AdventOfCodeConstant {
 }
 
 enum class AdventPart { PART_ONE, PART_TWO }
+enum class AdventOfCodeDay(val day: Int) {
+    DAY_ONE(1), DAY_TWO(2), DAY_THREE(3), DAY_FOUR(4);
+    operator fun invoke() = day
+}

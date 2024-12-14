@@ -1,12 +1,15 @@
 import AdventOfCodeConstant.ZERO
 import AdventPart.PART_ONE
 import AdventPart.PART_TWO
+import DayOne.numListPair
+import DayOne.part1
+import DayOne.part2
 import arrow.core.getOrElse
 import arrow.core.toOption
 import kotlin.test.Test
 import kotlin.test.assertTrue
 
-class AdventOfCodeDayOneTest {
+class Day01Test {
     private val numListPair by lazy { numListPair() }
     private val answer = mapOf(
         PART_ONE to 2375403.toLong(),
