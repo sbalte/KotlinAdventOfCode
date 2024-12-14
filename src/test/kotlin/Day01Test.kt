@@ -2,8 +2,8 @@ import AdventOfCodeConstant.ZERO
 import AdventPart.PART_ONE
 import AdventPart.PART_TWO
 import dec2024.DayOne.numListPair
-import dec2024.DayOne.part1
-import dec2024.DayOne.part2
+import dec2024.DayOne.partOne
+import dec2024.DayOne.partTwo
 import arrow.core.getOrElse
 import arrow.core.toOption
 import kotlin.test.Test
@@ -18,18 +18,18 @@ class Day01Test {
     @Test
     fun partOneTest() {
         numListPair.let { listPair ->
-            part1(listPair).also { println("Part One Answer: $it") }
+            partOne(listPair).also { println("Part One Answer: $it") }
         }.apply {
-            assertTrue( this == answer[PART_ONE].toOption().getOrElse { ZERO }.toLong(), "Part One test failed")
+            assertTrue( this == answer[PART_ONE].toOption().getOrElse { ZERO }.toLong())
         }
     }
 
     @Test
     fun partTwoTest() {
         numListPair.let { listPair ->
-            part2(listPair).also { println("Part Two Answer: $it") }
+            partTwo(listPair).also { println("Part Two Answer: $it") }
         }.apply {
-            assertTrue( this == answer[PART_TWO].toOption().getOrElse { ZERO }.toLong(), "Part One test failed")
+            assertTrue( this == answer[PART_TWO].toOption().getOrElse { ZERO }.toLong())
         }
     }
 }
