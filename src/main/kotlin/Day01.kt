@@ -1,11 +1,9 @@
-package com.balte.kotlin.adventofcode.`2024`
-
+import AdventOfCodeConstant.ONE
+import AdventOfCodeConstant.SPACE_SPLIT_REGEX
+import AdventOfCodeConstant.ZERO
+import FileUtil.readFileFromClasspath
 import arrow.core.getOrElse
 import arrow.core.toOption
-import com.balte.kotlin.adventofcode.util.AdventOfCodeConstant.ONE
-import com.balte.kotlin.adventofcode.util.AdventOfCodeConstant.SPACE_SPLIT_REGEX
-import com.balte.kotlin.adventofcode.util.AdventOfCodeConstant.ZERO
-import com.balte.kotlin.adventofcode.util.FileUtil.readFileFromClasspath
 import kotlin.math.abs
 
 fun numListPair(): Pair<List<Long>, List<Long>> = readFileFromClasspath("/2024/day1/input.txt").filter { it.isNotEmpty() }.map { line ->

@@ -1,10 +1,8 @@
-package com.balte.kotlin.adventofcode.`2024`
-
+import AdventOfCodeConstant.ZERO
+import AdventPart.PART_ONE
+import AdventPart.PART_TWO
 import arrow.core.getOrElse
 import arrow.core.toOption
-import com.balte.kotlin.adventofcode.util.AdventOfCodeConstant.ZERO
-import com.balte.kotlin.adventofcode.util.AdventPart.PART_ONE
-import com.balte.kotlin.adventofcode.util.AdventPart.PART_TWO
 import kotlin.test.Test
 import kotlin.test.assertTrue
 

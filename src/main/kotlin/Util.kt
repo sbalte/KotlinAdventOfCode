@@ -1,5 +1,3 @@
-package com.balte.kotlin.adventofcode.util
-
 @Suppress("unused")
 object FileUtil {
     fun readFileFromClasspath(fileName: String): List<String> =
