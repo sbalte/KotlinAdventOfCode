@@ -1,6 +1,6 @@
 @Suppress("unused")
 object FileUtil {
-    fun readInputFileLine(dayYearPair: Pair<AdventOfCodeDay, AdventOfCodeYear>) =
+    fun readInputFileLine(dayYearPair: Pair<AdventOfCodeDay, AdventOfCodeYear>): List<String> =
         "/${dayYearPair.second()}/day${dayYearPair.first()}/input.txt".let {
         readFileFromClasspath(it)
     }
@@ -9,6 +9,7 @@ object FileUtil {
 }
 
 object AdventOfCodeConstant {
+    const val EMPTY_STRING = ""
     const val SPACE = " "
     const val ZERO = 0
     const val ONE = 1
