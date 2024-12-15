@@ -17,25 +17,24 @@ import dec2024.DayTwo.safeCount
 import kotlin.math.abs
 
 object DayTwo {
-    fun numListPair(): List<List<Int>> =
-        readInputFileLine(AdventOfCodeDay.DAY_TWO to AdventOfCodeYear.YEAR_2024)
-            .filter { it.isNotEmpty() }
-            .map { line -> line.split(SPACE_SPLIT_REGEX) }
-            .map { list -> list.map { it.toInt() } }
-
-    val validDiff = listOf(ONE, TWO, THREE)
-    val isValidFilter: (List<Int>) -> List<Int> = { list ->
+    private val validDiff = listOf(ONE, TWO, THREE)
+    private val isValidFilter: (List<Int>) -> List<Int> = { list ->
         list.filterIndexed { index, _ -> index > ZERO && index < list.lastIndex }
             .filterIndexed { index, num ->
                 isValidDiff((list[index] - num).toOption(), (num - list[index.inc().inc()]).toOption()).not()
             }
     }
-
     private fun isValidDiff(currDiff: Option<Int>, nextDiff: Option<Int>): Boolean =
         currDiff.flatMap { cNum -> nextDiff.map { cNum to it } }.filter {
             ((it.first < ZERO && it.second < ZERO) || (it.first > ZERO && it.second > ZERO)) &&
                     ((abs(it.first) in validDiff) && (abs(it.second) in validDiff))
         }.map { true }.getOrElse { nextDiff.map { false }.getOrElse { true } }
+
+    fun numListPair(): List<List<Int>> =
+        readInputFileLine(AdventOfCodeDay.DAY_TWO to AdventOfCodeYear.YEAR_2024)
+            .filter { it.isNotEmpty() }
+            .map { line -> line.split(SPACE_SPLIT_REGEX) }
+            .map { list -> list.map { it.toInt() } }
 
     fun isSafePartOne(list: List<Int>) = isValidFilter(list).map { ONE }.sum() == ZERO
     fun isSafePartTwo(list: List<Int>) = (ZERO..list.lastIndex).map { index ->
