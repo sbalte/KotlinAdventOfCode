@@ -28,7 +28,7 @@ object DayOne {
 
 fun main() {
     DayOne.numListPair().let { listPair ->
-        DayOne.partOne(listPair).also { println("Part One Answer: $it") }
-        DayOne.partTwo(listPair).also { println("Part Two Answer: $it") }
+        DayOne.partOne(listPair).also { println("Day One Part One Answer: $it") }
+        DayOne.partTwo(listPair).also { println("Day One Part Two Answer: $it") }
     }
 }

@@ -1,3 +1,5 @@
+package dec2024
+
 import AdventOfCodeConstant.ZERO
 import AdventPart.PART_ONE
 import AdventPart.PART_TWO

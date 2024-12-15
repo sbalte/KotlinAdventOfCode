@@ -12,10 +12,15 @@ object AdventOfCodeConstant {
     const val SPACE = " "
     const val ZERO = 0
     const val ONE = 1
+    const val TWO = 2
+    const val THREE = 3
     val SPACE_SPLIT_REGEX = "\\s+".toRegex()
 }
 
-enum class AdventPart { PART_ONE, PART_TWO }
+enum class AdventPart(val displayStr: String) {
+    PART_ONE("One"), PART_TWO("Two");
+    operator fun invoke() = displayStr
+}
 enum class AdventOfCodeYear(val year: Int) {
     YEAR_2024(2024), YEAR_2025(2025), YEAR_2026(2026);
     operator fun invoke() = year
