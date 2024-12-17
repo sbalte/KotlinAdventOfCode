@@ -2,7 +2,6 @@ package dec2024
 
 import AdventOfCodeConstant.ZERO
 import AdventPart.PART_ONE
-import AdventPart.PART_TWO
 import arrow.core.getOrElse
 import arrow.core.toOption
 import org.junit.jupiter.api.Test
@@ -11,7 +10,7 @@ import kotlin.test.assertTrue
 class Day06Test {
     private val answer = mapOf(
         PART_ONE to 4515,
-        PART_TWO to 82857512,
+        PART_ONE to 1261,
     )
     @Test
     fun partOneTest() {
@@ -19,4 +18,10 @@ class Day06Test {
             assertTrue(ans == answer[PART_ONE].toOption().getOrElse { ZERO })
         }
     }
+//    @Test
+//    fun partTwoTest() {
+//        Day06.partTwoSolution().let { ans ->
+//            assertTrue(ans == answer[PART_TWO].toOption().getOrElse { ZERO })
+//        }
+//    }
 }
