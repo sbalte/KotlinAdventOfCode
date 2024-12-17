@@ -24,6 +24,7 @@ import kotlinx.coroutines.runBlocking
 import map
 import mapSecond
 import kotlin.time.measureTimedValue
+import java.lang.Runtime
 
 object Day06 {
     enum class GuardDirection { UP, DOWN, LEFT, RIGHT }
@@ -31,6 +32,7 @@ object Day06 {
         BLOCK_CHAR('#'), GO_CHAR('.'), CURRENT_POSITION('^');
         operator fun invoke() = space
     }
+    val concurrency = Runtime.getRuntime().availableProcessors()
     val matrix: List<String> = readInputFileLine(DAY_SIX to YEAR_2024)
     private fun isReachedEnd(
         currSpaceAndDirection: Pair<GuardDirection, Pair<Int, Int>>,
@@ -134,7 +136,7 @@ object Day06 {
                 val (rIndex, cIndex) = it
                 matrix[rIndex][cIndex] != BLOCK_CHAR() && startPosition.second != it
             }.toOption().map {
-                it.parMap(concurrency = 1) { obstacle ->
+                it.parMap(concurrency = concurrency) { obstacle ->
 //                    println("${Thread.currentThread().name} - running findSolution() with obstacle: $obstacle}")
                     findSolution(PART_TWO, obstacle)
                 }.filter { it.second }.map { ONE }.sum()
