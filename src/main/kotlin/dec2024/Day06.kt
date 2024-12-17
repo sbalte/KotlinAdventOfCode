@@ -85,12 +85,12 @@ object Day06 {
             { onRightMove, defaultMove ->
                 isReachedEnd(currSpaceAndDirection).let { isEnd ->
                     when (isEnd) {
-                        true -> currSpaceAndDirection to inLoopLogic(currSpaceAndDirection)
+                        true -> currSpaceAndDirection
                         false -> isHitBlock().toOption().filter { it }
                             .map { moveRight() to onRightMove }
-                            .getOrElse { direction to defaultMove }.let { it to inLoopLogic(it) }
+                            .getOrElse { direction to defaultMove }
                     }
-                }
+                }.let { it to inLoopLogic(it) }
             }
         isReachedEnd(currSpaceAndDirection).toOption().filter { !it }.map {
             when (direction) {
@@ -139,7 +139,7 @@ object Day06 {
                 it.parMap(concurrency = concurrency) { obstacle ->
 //                    println("${Thread.currentThread().name} - running findSolution() with obstacle: $obstacle}")
                     findSolution(PART_TWO, obstacle)
-                }.filter { it.second }.map { ONE }.sum()
+                }.filter { it.second }.sumOf { ONE }
             }.getOrElse { ZERO }
         }
     }
@@ -150,7 +150,7 @@ fun main() {
         println("Time Taken: ${tv.duration.inWholeMilliseconds} ms")
     }
     "Day Six Part %s Answer:".also { msg ->
-        repeat(1) { counter ->
+        repeat(3) { counter ->
             println("Run $counter:")
             benchmarkRun { partOneSolution().let { "${msg.format(PART_ONE())} $it" } }
             benchmarkRun { partTwoSolution().let { "${msg.format(PART_TWO())} $it" } }
