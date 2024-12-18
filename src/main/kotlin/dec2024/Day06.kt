@@ -44,17 +44,17 @@ object Day06 {
             RIGHT -> space.second.inc() > matrix[space.first].length.dec()
         }
     }
-    fun currentSpace(counterMap: MutableMap<Pair<GuardDirection, Pair<Int, Int>>, Int>):
-            Pair<GuardDirection, Pair<Int, Int>> = matrix.mapIndexed { rIndex, row ->
-        row.toCharArray().mapIndexed { cIndex, col ->
-            rIndex + (cIndex to col)
-        }.filter { colPair -> colPair.second.second == CURRENT_POSITION() }.firstOrNone()
-    }.filter { it.isSome() }.firstOrNone().flatMap { it }
-        .map { pair -> UP + (pair.first to pair.second.first) }
-        .getOrElse { UP + (ZERO to ZERO) }.also { result ->
-            counterMap.registerVisit(UP to result.second)
-        }
-    fun MutableMap<Pair<GuardDirection, Pair<Int, Int>>, Int>.registerVisit(newPosition: Pair<GuardDirection, Pair<Int, Int>>) =
+    private fun currentSpace(counterMap: MutableMap<Pair<GuardDirection, Pair<Int, Int>>, Int>):
+            Pair<GuardDirection, Pair<Int, Int>> =
+        (ZERO..matrix.size.dec()).map { rIndex ->
+            (ZERO..matrix[rIndex].length.dec()).map { cIndex -> rIndex + (cIndex to matrix[rIndex][cIndex]) }
+                .filter { colPair -> colPair.second.second == CURRENT_POSITION() }.firstOrNone()
+        }.filter { it.isSome() }.firstOrNone().flatMap { it }
+            .map { pair -> UP + (pair.first to pair.second.first) }
+            .getOrElse { UP + (ZERO to ZERO) }.also { result ->
+                counterMap.registerVisit(UP to result.second)
+            }
+    private fun MutableMap<Pair<GuardDirection, Pair<Int, Int>>, Int>.registerVisit(newPosition: Pair<GuardDirection, Pair<Int, Int>>) =
         compute(newPosition) { key, oldValue ->
             oldValue.toOption().map { it.inc() }.getOrElse { ONE }
         }
@@ -97,7 +97,7 @@ object Day06 {
             }.also { result -> counterMap.registerVisit(result.first.map { directionLogic(result.first.first) }) }
         }.getOrElse { currSpaceAndDirection to false }
     }
-    fun findSolution(
+    private fun findSolution(
         adventPart: AdventPart,
         adhocObstacle: Pair<Int, Int>,
     ): Pair<MutableMap<Pair<GuardDirection, Pair<Int, Int>>, Int>, Boolean> = mutableMapOf<Pair<GuardDirection, Pair<Int, Int>>, Int>().let { counterMap ->
