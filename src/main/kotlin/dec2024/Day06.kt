@@ -24,7 +24,6 @@ import kotlinx.coroutines.runBlocking
 import map
 import mapSecond
 import kotlin.time.measureTimedValue
-import java.lang.Runtime
 
 object Day06 {
     enum class GuardDirection { UP, DOWN, LEFT, RIGHT }
@@ -105,10 +104,7 @@ object Day06 {
         adventPart: AdventPart,
         adhocObstacle: Pair<Int, Int>,
     ): Pair<MutableMap<Pair<GuardDirection, Pair<Int, Int>>, Int>, Boolean> = mutableMapOf<Pair<GuardDirection, Pair<Int, Int>>, Int>().let { counterMap ->
-        tailrec fun recursiveMove(
-            move: Pair<GuardDirection, Pair<Int, Int>>,
-            startPosition: Pair<GuardDirection, Pair<Int, Int>>
-        ): Pair<Pair<GuardDirection, Pair<Int, Int>>, Boolean> =
+        tailrec fun recursiveMove(move: Pair<GuardDirection, Pair<Int, Int>>): Pair<Pair<GuardDirection, Pair<Int, Int>>, Boolean> =
             moveForward(counterMap, move, when(adventPart) {
                 PART_ONE -> { _ -> UP }
                 PART_TWO -> { direction -> direction }
@@ -120,9 +116,9 @@ object Day06 {
                 PART_TWO -> { currPosition -> counterMap.contains(currPosition) }
             }).let {
                 if (it.first == move || it.second) return move to it.second
-                return recursiveMove(it.first, startPosition)
+                return recursiveMove(it.first)
             }
-        currentSpace(counterMap).let { recursiveMove(it, it) }.run {
+        currentSpace(counterMap).let { recursiveMove(it) }.run {
             this.second.toOption().filter { it }.map { println("End Infinite Loop State: $this") }
             counterMap to this.second
         }
@@ -134,7 +130,7 @@ object Day06 {
                 (ZERO..matrix[rIndex].length.dec()).map { cIndex -> rIndex to cIndex }
             }.filter {
                 val (rIndex, cIndex) = it
-                matrix[rIndex][cIndex] != BLOCK_CHAR() && startPosition.second != it
+                matrix[rIndex][cIndex] != BLOCK_CHAR() || startPosition.second != it
             }.toOption().map {
                 it.parMap(concurrency = concurrency) { obstacle ->
 //                    println("${Thread.currentThread().name} - running findSolution() with obstacle: $obstacle}")
@@ -150,7 +146,7 @@ fun main() {
         println("Time Taken: ${tv.duration.inWholeMilliseconds} ms")
     }
     "Day Six Part %s Answer:".also { msg ->
-        repeat(3) { counter ->
+        repeat(1) { counter ->
             println("Run $counter:")
             benchmarkRun { partOneSolution().let { "${msg.format(PART_ONE())} $it" } }
             benchmarkRun { partTwoSolution().let { "${msg.format(PART_TWO())} $it" } }
