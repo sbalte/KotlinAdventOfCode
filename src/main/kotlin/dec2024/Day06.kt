@@ -23,6 +23,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.runBlocking
 import map
 import mapSecond
+import plus
 import kotlin.time.measureTimedValue
 
 object Day06 {
@@ -46,11 +47,11 @@ object Day06 {
     fun currentSpace(counterMap: MutableMap<Pair<GuardDirection, Pair<Int, Int>>, Int>):
             Pair<GuardDirection, Pair<Int, Int>> = matrix.mapIndexed { rIndex, row ->
         row.toCharArray().mapIndexed { cIndex, col ->
-            rIndex to (cIndex to col)
+            rIndex + (cIndex to col)
         }.filter { colPair -> colPair.second.second == CURRENT_POSITION() }.firstOrNone()
     }.filter { it.isSome() }.firstOrNone().flatMap { it }
-        .map { pair -> UP to (pair.first to pair.second.first) }
-        .getOrElse { UP to (ZERO to ZERO) }.also { result ->
+        .map { pair -> UP + (pair.first to pair.second.first) }
+        .getOrElse { UP + (ZERO to ZERO) }.also { result ->
             counterMap.registerVisit(UP to result.second)
         }
     fun MutableMap<Pair<GuardDirection, Pair<Int, Int>>, Int>.registerVisit(newPosition: Pair<GuardDirection, Pair<Int, Int>>) =
@@ -82,13 +83,9 @@ object Day06 {
             }
         val nextMoveLogic: (Pair<Int, Int>, Pair<Int, Int>) -> Pair<Pair<GuardDirection, Pair<Int, Int>>, Boolean> =
             { onRightMove, defaultMove ->
-                isReachedEnd(currSpaceAndDirection).let { isEnd ->
-                    when (isEnd) {
-                        true -> currSpaceAndDirection
-                        false -> isHitBlock().toOption().filter { it }
-                            .map { moveRight() to onRightMove }
-                            .getOrElse { direction to defaultMove }
-                    }
+                when(isHitBlock()) {
+                    true -> moveRight() to onRightMove
+                    false -> direction to defaultMove
                 }.let { it to inLoopLogic(it) }
             }
         isReachedEnd(currSpaceAndDirection).toOption().filter { !it }.map {
@@ -97,7 +94,7 @@ object Day06 {
                 DOWN -> nextMoveLogic(space.mapSecond { it.dec() }, space.map { it.inc() })
                 LEFT -> nextMoveLogic(space.map { it.dec() }, space.mapSecond { it.dec() })
                 RIGHT -> nextMoveLogic(space.map { it.inc() }, space.mapSecond { it.inc() })
-            }.also { result -> counterMap.registerVisit(directionLogic(result.first.first) to result.first.second) }
+            }.also { result -> counterMap.registerVisit(result.first.map { directionLogic(result.first.first) }) }
         }.getOrElse { currSpaceAndDirection to false }
     }
     fun findSolution(
@@ -113,7 +110,7 @@ object Day06 {
                 PART_TWO -> { currPosition -> currPosition == adhocObstacle }
             }, when(adventPart) {
                 PART_ONE -> { _ -> false }
-                PART_TWO -> { currPosition -> counterMap.contains(currPosition) }
+                PART_TWO -> { currPosition -> currPosition in counterMap }
             }).let {
                 if (it.first == move || it.second) return move to it.second
                 return recursiveMove(it.first)

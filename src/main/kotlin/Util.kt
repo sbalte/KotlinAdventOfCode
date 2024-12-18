@@ -31,6 +31,8 @@ enum class AdventOfCodeDay(val day: Int) {
     DAY_ONE(1), DAY_TWO(2), DAY_THREE(3), DAY_FOUR(4), DAY_FIVE(5), DAY_SIX(6);
     operator fun invoke() = day
 }
+operator fun <U, V, R> R.plus(pair: Pair<U, V>): Pair<R, Pair<U, V>> = this to pair
+operator fun <U, V, R> Pair<U, V>.plus(item: R): Pair<Pair<U, V>, R> = this to item
 fun <U, V, R> Pair<U, V>.map(block: (U) -> R): Pair<R, V> = block(first) to second
 fun <U, V, R> Pair<U, V>.mapSecond(block: (V) -> R): Pair<U, R> = first to block(second)
 
