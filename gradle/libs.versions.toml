@@ -1,0 +1,318 @@
+[versions]
+apachePOIVersion = "5.2.5"
+apacheVelocityToolVersion = "2.0"
+apacheVelocityVersion = "1.7"
+arrowCoreTestVersion = "1.1.2"
+arrowKotlinVersion = "1.2.4"
+assertJCoreVersion = "3.25.3"
+bsdFreemakerTemplateEngineVersion = "2.3.32"
+coherenceVersion = "14.1.1-0-3"
+commonsLang3Version = "3.12.0"
+csfClientVersion = "2.0.0.4"
+exposed-version = "1.0.0-beta-5"
+googleGsonVersion = "2.11.0"
+googleGuavaVersion = "33.4.8-jre"
+h2-version = "2.2.224"
+http4kBomVersion = "5.47.0.0"
+hubbardsXPathVersion = "0.0.6"
+jacksonBomVersion = "2.17.2"
+jacksonVersion = "2.19.2"
+jasyptVersion = "1.9.3"
+jaxbAPIVersion = "2.4.0-b180830.0359"
+jaxbVersion = "4.0.5"
+jaywayJsonPathVersion = "2.9.0"
+klibsFlowExtVersion = "1.0.0"
+koTestArrowVersion = "1.4.0"
+koTestExtSpringVersion = "1.1.3"
+koTestKOTestExtSpringVersion = "4.4.3"
+koTestVersion = "5.9.1"
+kosonJsonBuilderVersion = "1.2.8"
+kotlinCoroutineTestVersion = "1.9.0-RC.2"
+kotlinDataframeVersion = "1.0.0-Beta2"
+kotlinDatetimeVersion = "0.6.1"
+kotlinHtmlJvmVersion = "0.6.10"
+kotlinIOCoreVersion = "0.3.5"
+kotlinImmutableCollectionVersion = "0.3.5"
+kotlinKMathVersion = "0.3.1"
+kotlinMultiKVersion = "0.2.3"
+kotlinReduxVersion = "0.5.5"
+kotlinVersion = "2.2.0"
+kotlinTestVersion = "2.2.0"
+kotlinXmlBuilderVersion = "1.9.1"
+kotlinxBenchmarkVersion = "0.4.13"
+log4jKotlinVersion = "1.5.0"
+mockkJvmVersion = "1.13.8"
+mooWorkVersion = "1.3.1"
+mssqlR2DBCVersion = "1.0.2.RELEASE"
+nativeBuildTool = "0.9.20"
+openJdkJmhVersion = "1.37"
+orchestraFrameworkVersion = "3.5.1"
+plainSuffix = "-plain"
+projectReleaseVersion = "1.0.0-SNAPSHOT"
+reactiveMutinyVersion = "2.6.0"
+redissonVersion = "3.22.0"
+solaceClientVersion = "1.4.0"
+solaceJmsJakartaVersion = "10.23.0"
+solaceVersion = "10.22.0"
+sonarQubeVersion = "4.4.1.3373"
+springBootVersion = "3.5.4"
+springManagementVersion = "1.1.7"
+springModulithVersion = "1.2.0"
+strBase = "com.wellsfargo.str"
+strCacheJarVersion = "24.04.0.27"
+strNextGenAppString = "str.nextgen.app"
+strPluginString = "str.plugin"
+strSharedLibraryString = "str.shared.library"
+striKtVersion = "0.35.1"
+swaggerParserVersion = "2.1.22"
+testApprovalVersion = "24.9.0"
+testContainerJupiter = "1.19.7"
+testHttp4k4TestVersion = "5.29.0.0"
+testMockitoInlineVersion = "5.2.0"
+testOkHttpVersion = "4.12.0"
+thymeleafTemplateEngineVersion = "3.1.2.RELEASE"
+variableTokenVersion = "3.0.20"
+vavrVersion = "0.10.4"
+xmlUnitCoreVersion = "2.9.1"
+
+[plugins]
+io-spring-dependency-management = { id = "io.spring.dependency-management", version.ref = "springManagementVersion" }
+org-jetbrains-kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlinVersion" }
+org-jetbrains-kotlin-plugin-spring = { id = "org.jetbrains.kotlin.plugin.spring", version.ref = "kotlinVersion" }
+org-jetbrains-kotlinx-dataframe = { id = "org.jetbrains.kotlinx.dataframe", version.ref = "kotlinDataframeVersion" }
+org-springframework-boot = { id = "org.springframework.boot", version.ref = "springBootVersion" }
+
+[libraries]
+# --- Spring ---
+# --- Spring :: Jackson ---
+jacksonAnnotationBom = { module = "com.fasterxml.jackson:jackson-bom", version.ref = "jacksonVersion" }
+jacksonAnnotation = { module = "com.fasterxml.jackson.module:jackson-module-jaxb-annotations" }
+jacksonDataFormatCsv = { module = "com.fasterxml.jackson.dataformat:jackson-dataformat-csv" }
+jacksonDataFormatXml = { module = "com.fasterxml.jackson.dataformat:jackson-dataformat-xml" }
+jacksonDataFormatYaml = { module = "com.fasterxml.jackson.dataformat:jackson-dataformat-yaml" }
+jacksonKotlinModule = { module = "com.fasterxml.jackson.module:jackson-module-kotlin" }
+
+# --- Spring :: JAXB ---
+jaxbApi = { module = "javax.xml.bind:jaxb-api", version.ref = "jaxbAPIVersion" }
+jaxbBindImpl = { module = "com.sun.xml.bind:jaxb-impl", version.ref = "jaxbVersion" }
+jaxbBindXjc = { module = "com.sun.xml.bind:jaxb-xjc", version.ref = "jaxbVersion" }
+
+# --- Spring :: Reactor ---
+reactorKotlinExtension = { module = "io.projectreactor.kotlin:reactor-kotlin-extensions" }
+
+# --- Spring :: Starters ---
+springBootActuator = { module = "org.springframework.boot:spring-boot-starter-actuator" }
+springBootMail = { module = "org.springframework.boot:spring-boot-starter-mail" }
+springBootR2DBC = { module = "org.springframework.boot:spring-boot-starter-data-r2dbc" }
+springBootStarterSecurity = { module = "org.springframework.boot:spring-boot-starter-security" }
+springBootWebflux = { module = "org.springframework.boot:spring-boot-starter-webflux" }
+
+# --- Spring :: Integration ---
+springBootIntegration = { module = "org.springframework.boot:spring-boot-starter-integration" }
+springBootIntegrationFile = { module = "org.springframework.integration:spring-integration-file" }
+springBootIntegrationJms = { module = "org.springframework.integration:spring-integration-jms" }
+springBootIntegrationR2DBC = { module = "org.springframework.integration:spring-integration-r2dbc" }
+springBootIntegrationWebflux = { module = "org.springframework.integration:spring-integration-webflux" }
+
+# --- Spring :: Modulith ---
+springModulith = { module = "org.springframework.modulith:spring-modulith-starter-core", version.ref = "springModulithVersion" }
+
+# --- Spring :: Dev Tools ---
+springBootDevTool = { module = "org.springframework.boot:spring-boot-devtools" }
+
+# --- Spring :: Docker ---
+springBootDockerCompose = { module = "org.springframework.boot:spring-boot-docker-compose" }
+
+# --- Spring :: Misc ---
+springBootDataRedis = { module = "org.springframework.boot:spring-boot-starter-data-redis" }
+springBootDataRedisReactive = { module = "org.springframework.boot:spring-boot-starter-data-redis-reactive" }
+springBootLog4j2 = { module = "org.springframework.boot:spring-boot-starter-log4j2" }
+
+# --- Kotlin ---
+# --- Kotlin :: Arrow ---
+arrowAutoClose = { module = "io.arrow-kt:arrow-autoclose", version.ref = "arrowKotlinVersion" }
+arrowCore = { module = "io.arrow-kt:arrow-core" }
+arrowEval = { module = "io.arrow-kt:arrow-eval", version.ref = "arrowKotlinVersion" }
+arrowFxCoroutine = { module = "io.arrow-kt:arrow-fx-coroutines" }
+arrowKSP = { module = "io.arrow-kt:arrow-optics-ksp-plugin", version.ref = "arrowKotlinVersion" }
+arrowOptics = { module = "io.arrow-kt:arrow-optics", version.ref = "arrowKotlinVersion" }
+arrowSTM = { module = "io.arrow-kt:arrow-fx-stm", version.ref = "arrowKotlinVersion" }
+arrowStack = { module = "io.arrow-kt:arrow-stack", version.ref = "arrowKotlinVersion" }
+
+# --- Kotlin :: Core ---
+klibsFlowExt = { module = "io.github.hoc081098:FlowExt", version.ref = "klibsFlowExtVersion" }
+kosonJsonBuilder = { module = "com.lectra:koson", version.ref = "kosonJsonBuilderVersion" }
+kotlinCoroutineReactor = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-reactor" }
+kotlinDataframe = { module = "org.jetbrains.kotlinx:dataframe", version.ref = "kotlinDataframeVersion" }
+kotlinDatetime = { module = "org.jetbrains.kotlinx:kotlinx-datetime", version.ref = "kotlinDatetimeVersion" }
+kotlinHtmlJvm = { module = "org.jetbrains.kotlinx:kotlinx-html-jvm", version.ref = "kotlinHtmlJvmVersion" }
+kotlinIOCore = { module = "org.jetbrains.kotlinx:kotlinx-io-core", version.ref = "kotlinIOCoreVersion" }
+kotlinImmutableCollection = { module = "org.jetbrains.kotlinx:kotlinx-collections-immutable", version.ref = "kotlinImmutableCollectionVersion" }
+kotlinKMath = { module = "space.kscience:kmath-core-jvm", version.ref = "kotlinKMathVersion" }
+kotlinMultiKCore = { module = "org.jetbrains.kotlinx:multik-core", version.ref = "kotlinMultiKVersion" }
+kotlinMultiKDefault = { module = "org.jetbrains.kotlinx:multik-default", version.ref = "kotlinMultiKVersion" }
+kotlinRedux = { module = "org.reduxkotlin:redux-kotlin-threadsafe", version.ref = "kotlinReduxVersion" }
+kotlinReflect = { module = "org.jetbrains.kotlin:kotlin-reflect" }
+kotlinXmlBuilder = { module = "org.redundent:kotlin-xml-builder", version.ref = "kotlinXmlBuilderVersion" }
+kotlinxBenchmark = { module = "org.jetbrains.kotlinx:kotlinx-benchmark-runtime", version.ref = "kotlinxBenchmarkVersion" }
+
+# --- Other ---
+# --- Other :: Apache ---
+apacheCommonsLang3 = { module = "org.apache.commons:commons-lang3", version.ref = "commonsLang3Version" }
+apacheLog4jKotlin = { module = "org.apache.logging.log4j:log4j-api-kotlin", version.ref = "log4jKotlinVersion" }
+apachePoi = { module = "org.apache.poi:poi", version.ref = "apachePOIVersion" }
+apachePoiOoxml = { module = "org.apache.poi:poi-ooxml", version.ref = "apachePOIVersion" }
+apacheVelocity = { module = "org.apache.velocity:velocity", version.ref = "apacheVelocityVersion" }
+apacheVelocityTool = { module = "org.apache.velocity:velocity-tools", version.ref = "apacheVelocityToolVersion" }
+
+# --- Other :: Templates ---
+bsdFreemakerTemplateEngine = { module = "org.freemarker:freemarker", version.ref = "bsdFreemakerTemplateEngineVersion" }
+thymeleafSpringTemplateEngine = { module = "org.thymeleaf:thymeleaf-spring6", version.ref = "thymeleafTemplateEngineVersion" }
+thymeleafTemplateEngine = { module = "org.thymeleaf:thymeleaf", version.ref = "thymeleafTemplateEngineVersion" }
+
+# --- Other :: http4k ---
+http4kBom = { module = "org.http4k:http4k-bom", version.ref = "http4kBomVersion" }
+http4kClientApache = { module = "org.http4k:http4k-client-apache-async" }
+http4kClientOkHttp = { module = "org.http4k:http4k-client-okhttp" }
+http4kCore = { module = "org.http4k:http4k-core" }
+http4kFreeMarkerTemplate = { module = "org.http4k:http4k-template-freemarker" }
+http4kJackson = { module = "org.http4k:http4k-format-jackson" }
+http4kJacksonXml = { module = "org.http4k:http4k-format-jackson-xml" }
+http4kJettyClient = { module = "org.http4k:http4k-client-jetty" }
+http4kJettyServer = { module = "org.http4k:http4k-server-jetty" }
+http4kKotlinSerialization = { module = "org.http4k:http4k-format-kotlinx-serialization" }
+http4kMultipart = { module = "org.http4k:http4k-multipart" }
+http4kNetty = { module = "org.http4k:http4k-server-netty" }
+http4kNettyClient = { module = "org.http4k:http4k-client-netty" }
+http4kThymeleafTemplate = { module = "org.http4k:http4k-template-thymeleaf" }
+http4kWebSocketClient = { module = "org.http4k:http4k-client-websocket" }
+http4kWebSocketServer = { module = "org.http4k:http4k-server-websocket" }
+http4kXml = { module = "org.http4k:http4k-format-xml" }
+
+# --- Other :: Google ---
+googleGson = { module = "com.google.code.gson:gson", version.ref = "googleGsonVersion" }
+googleGuava = { module = "com.google.guava:guava", version.ref = "googleGuavaVersion" }
+
+# --- Other :: Solace ---
+solaceJcsmp = { module = "com.solacesystems:sol-jcsmp", version.ref = "solaceVersion" }
+solaceJms = { module = "com.solacesystems:sol-jms", version.ref = "solaceVersion" }
+solaceJmsJakarta = { module = "com.solacesystems:sol-jms-jakarta", version.ref = "solaceJmsJakartaVersion" }
+solaceMsgClient = { module = "com.solace:solace-messaging-client", version.ref = "solaceClientVersion" }
+
+# --- Other :: Mutiny ---
+reactiveMutiny = { module = "io.smallrye.reactive:mutiny", version.ref = "reactiveMutinyVersion" }
+reactiveMutinyKotlin = { module = "io.smallrye.reactive:mutiny-kotlin", version.ref = "reactiveMutinyVersion" }
+reactiveMutinyReactor = { module = "io.smallrye.reactive:mutiny-reactor", version.ref = "reactiveMutinyVersion" }
+
+# --- Other :: XML ---
+hubbardsXPath = { module = "com.github.hubbards:xpath-kotlin", version.ref = "hubbardsXPathVersion" }
+xmlUnitCore = { module = "org.xmlunit:xmlunit-core", version.ref = "xmlUnitCoreVersion" }
+
+# --- Other :: Swagger ---
+swaggerParser = { module = "io.swagger.parser.v3:swagger-parser", version.ref = "swaggerParserVersion" }
+
+# --- Other :: Vavr ---
+vavr = { module = "io.vavr:vavr", version.ref = "vavrVersion" }
+
+# --- Other :: JMH ---
+openJdkJmhAnnProcess = { module = "org.openjdk.jmh:jmh-generator-annprocess", version.ref = "openJdkJmhVersion" }
+openJdkJmhCore = { module = "org.openjdk.jmh:jmh-core", version.ref = "openJdkJmhVersion" }
+
+# --- Other :: Security ---
+jasypt = { module = "org.jasypt:jasypt", version.ref = "jasyptVersion" }
+
+# --- Other :: JSONPath ---
+jaywayJsonPath = { module = "com.jayway.jsonpath:json-path", version.ref = "jaywayJsonPathVersion" }
+
+# --- Other :: Redisson ---
+radisson = { module = "org.redisson:redisson", version.ref = "redissonVersion" }
+
+# --- Runtime ---
+mssqlJdbc = { module = "com.microsoft.sqlserver:mssql-jdbc" }
+mssqlR2DBC = { module = "io.r2dbc:r2dbc-mssql", version.ref = "mssqlR2DBCVersion" }
+
+# --- Test ---
+# --- Test :: Kotest ---
+testKOTestAssert = { module = "io.kotest:kotest-assertions-core-jvm", version.ref = "koTestVersion" }
+testKOTestExtArrow = { module = "io.kotest.extensions:kotest-assertions-arrow", version.ref = "koTestArrowVersion" }
+testKOTestExtArrowJvm = { module = "io.kotest.extensions:kotest-assertions-arrow-jvm", version.ref = "koTestArrowVersion" }
+testKOTestExtJvm = { module = "io.kotest:kotest-extensions-jvm", version.ref = "koTestVersion" }
+testKOTestExtSpring = { module = "io.kotest.extensions:kotest-extensions-spring", version.ref = "koTestExtSpringVersion" }
+testKOTestJunit5Jvm = { module = "io.kotest:kotest-runner-junit5-jvm", version.ref = "koTestVersion" }
+testKOTestKOTestExtSpring = { module = "io.kotest:kotest-extensions-spring", version.ref = "koTestKOTestExtSpringVersion" }
+
+# --- Test :: Strikt ---
+testStriKtArrow = { module = "io.strikt:strikt-arrow" }
+testStriKtBom = { module = "io.strikt:strikt-bom", version.ref = "striKtVersion" }
+testStriKtCore = { module = "io.strikt:strikt-core" }
+testStriKtJackson = { module = "io.strikt:strikt-jackson" }
+testStriKtJvm = { module = "io.strikt:strikt-jvm" }
+testStriKtMockk = { module = "io.strikt:strikt-mockk" }
+testStriKtSpring = { module = "io.strikt:strikt-spring" }
+
+# --- Test :: Spring ---
+testSpringBootStarter = { module = "org.springframework.boot:spring-boot-starter-test" }
+testSpringBootTestContainer = { module = "org.springframework.boot:spring-boot-testcontainers" }
+testSpringIntegrationTest = { module = "org.springframework.integration:spring-integration-test" }
+testSpringSecurity = { module = "org.springframework.security:spring-security-test" }
+testSpringSecurityReactive = { module = "org.springframework.security:spring-security-reactive" }
+
+# --- Test :: Reactor ---
+testSpringBootReactor = { module = "io.projectreactor:reactor-test" }
+
+# --- Test :: Mockito ---
+testMockitoInline = { module = "org.mockito:mockito-inline", version.ref = "testMockitoInlineVersion" }
+
+# --- Test :: MockK ---
+testMockkJvm = { module = "io.mockk:mockk-jvm", version.ref = "mockkJvmVersion" }
+
+# --- Test :: OkHttp ---
+testOkHttp = { module = "com.squareup.okhttp3:okhttp", version.ref = "testOkHttpVersion" }
+testOkHttpMockWebServer = { module = "com.squareup.okhttp3:mockwebserver", version.ref = "testOkHttpVersion" }
+
+# --- Test :: http4k ---
+testHttp4k4Approval = { module = "org.http4k:http4k-testing-approval", version.ref = "testHttp4k4TestVersion" }
+testHttp4k4Hamkrest = { module = "org.http4k:http4k-testing-hamkrest", version.ref = "testHttp4k4TestVersion" }
+testHttp4k4Strikt = { module = "org.http4k:http4k-testing-strikt", version.ref = "testHttp4k4TestVersion" }
+
+# --- Test :: Kotlin Test ---
+testKotlinCoroutineTest = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-test", version.ref = "kotlinCoroutineTestVersion" }
+testKotlinJUnitTest = { module = "org.jetbrains.kotlin:kotlin-test-junit" }
+# Skipped unsupported coordinate for testKotlinJunit5 -> test-junit5
+testKotlinTest = { module = "org.jetbrains.kotlin:kotlin-test" }
+
+# --- Test :: Testcontainers ---
+testJunitJupiter = { module = "org.testcontainers:junit-jupiter", version.ref = "testContainerJupiter" }
+
+# --- Test :: DB/H2 ---
+testH2DB = { module = "com.h2database:h2" }
+testH2R2DBC = { module = "io.r2dbc:r2dbc-h2" }
+
+# --- Test :: Approvals ---
+testApprovalPath = { module = "com.approvaltests:approvaltests", version.ref = "testApprovalVersion" }
+
+# --- Test :: Misc ---
+testArrowCore = { module = "io.arrow-kt:arrow-core-test", version.ref = "arrowCoreTestVersion" }
+testAssetJCore = { module = "org.assertj:assertj-core", version.ref = "assertJCoreVersion" }
+
+# --- Cache ---
+coherence = { module = "com.oracle.coherence.ce:coherence", version.ref = "coherenceVersion" }
+csfClient = { module = "com.wfs.csf.client:CSFClient", version.ref = "csfClientVersion" }
+strCache = { module = "com.wellsfargo.regcache:str-cache", version.ref = "strCacheJarVersion" }
+
+# --- Misc ---
+exposed-core = { module = "org.jetbrains.exposed:exposed-core", version.ref = "exposed-version" }
+exposed-jdbc = { module = "org.jetbrains.exposed:exposed-jdbc", version.ref = "exposed-version" }
+h2 = { module = "com.h2database:h2", version.ref = "h2-version" }
+
+[bundles]
+apacheBundle = ["apacheCommonsLang3", "apacheLog4jKotlin", "apachePoi", "apachePoiOoxml", "apacheVelocity", "apacheVelocityTool", "bsdFreemakerTemplateEngine", "thymeleafSpringTemplateEngine", "thymeleafTemplateEngine"]
+arrowBundle = ["arrowAutoClose", "arrowCore", "arrowEval", "arrowFxCoroutine", "arrowKSP", "arrowOptics", "arrowSTM", "arrowStack"]
+googleBundle = ["googleGson", "googleGuava"]
+http4kBundle = ["http4kBom", "http4kClientApache", "http4kClientOkHttp", "http4kCore", "http4kFreeMarkerTemplate", "http4kJackson", "http4kJacksonXml", "http4kJettyClient", "http4kJettyServer", "http4kKotlinSerialization", "http4kMultipart", "http4kNetty", "http4kNettyClient", "http4kThymeleafTemplate", "http4kWebSocketClient", "http4kWebSocketServer", "http4kXml"]
+kotestBundle = ["testKOTestAssert", "testKOTestExtArrow", "testKOTestExtArrowJvm", "testKOTestExtJvm", "testKOTestExtSpring", "testKOTestJunit5Jvm", "testKOTestKOTestExtSpring"]
+kotlin-coreBundle = ["klibsFlowExt", "kosonJsonBuilder", "kotlinCoroutineReactor", "kotlinDataframe", "kotlinDatetime", "kotlinHtmlJvm", "kotlinIOCore", "kotlinImmutableCollection", "kotlinKMath", "kotlinMultiKCore", "kotlinMultiKDefault", "kotlinRedux", "kotlinReflect", "kotlinXmlBuilder", "kotlinxBenchmark"]
+mutinyBundle = ["reactiveMutiny", "reactiveMutinyKotlin", "reactiveMutinyReactor"]
+solaceBundle = ["solaceJcsmp", "solaceJms", "solaceJmsJakarta", "solaceMsgClient"]
+springBundle = ["jacksonAnnotation", "jacksonDataFormatCsv", "jacksonDataFormatXml", "jacksonDataFormatYaml", "jacksonKotlinModule", "jaxbApi", "jaxbBindImpl", "jaxbBindXjc", "reactorKotlinExtension", "springBootActuator", "springBootDataRedis", "springBootDataRedisReactive", "springBootDevTool", "springBootDockerCompose", "springBootIntegration", "springBootIntegrationFile", "springBootIntegrationJms", "springBootIntegrationR2DBC", "springBootIntegrationWebflux", "springBootLog4j2", "springBootMail", "springBootR2DBC", "springBootStarterSecurity", "springBootWebflux", "springModulith"]
+striktBundle = ["testStriKtArrow", "testStriKtBom", "testStriKtCore", "testStriKtJackson", "testStriKtJvm", "testStriKtMockk", "testStriKtSpring"]
