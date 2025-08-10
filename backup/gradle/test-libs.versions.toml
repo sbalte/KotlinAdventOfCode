@@ -1,0 +1,13 @@
+[versions]
+testContainerJupiter = "1.19.7"
+koTestPluginVersion = "0.4.11"
+
+[libraries]
+# --- Test :: Testcontainers ---
+testJunitJupiter = { module = "org.testcontainers:junit-jupiter", version.ref = "testContainerJupiter" }
+
+[bundles]
+junitTestBundle = ["testJunitJupiter"]
+
+[plugins]
+koTestPlugin = { id = "io.kotest", version.ref = "koTestPluginVersion" }
