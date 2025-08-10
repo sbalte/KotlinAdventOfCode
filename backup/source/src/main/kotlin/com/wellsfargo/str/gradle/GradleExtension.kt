@@ -12,7 +12,7 @@ object GradleExtension {
         add("runtimeOnly", dependencyNotation)
     fun DependencyHandler.testImplementation(dependencyNotation: Any): Dependency? =
         add("testImplementation", dependencyNotation)
-    fun DependencyHandler.ksp(dependencyNotation: Any): Dependency? =
-        add("ksp", dependencyNotation)
+//    fun DependencyHandler.ksp(dependencyNotation: Any): Dependency? =
+//        add("ksp", dependencyNotation)
 }
 

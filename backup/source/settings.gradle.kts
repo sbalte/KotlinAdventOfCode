@@ -1,3 +1,25 @@
+dependencyResolutionManagement {
+    versionCatalogs {
+        create("libs") {
+            "${rootProject.projectDir}/../gradle/libs.versions.toml".also { tomlFile ->
+                println(">>>>Using version catalog file: $tomlFile for catalog name - libs")
+                from(files(tomlFile))
+            }
+        }
+        create("strLibs") {
+            "${rootProject.projectDir}/../gradle/libs.versions.toml".also { tomlFile ->
+                println(">>>>Using version catalog file: $tomlFile for catalog name - strLibs")
+                from(files(tomlFile))
+            }
+        }
+        create("testLibs") {
+            "${rootProject.projectDir}/../gradle/test-libs.versions.toml".also { tomlFile ->
+                println(">>>>Using version catalog file: $tomlFile for catalog name - testLibs")
+                from(files(tomlFile))
+            }
+        }
+    }
+}
 pluginManagement {
     fun property(propFile: String): java.util.Properties =
         (File(propFile) to java.util.Properties()).let { pair ->

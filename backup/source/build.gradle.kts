@@ -6,8 +6,40 @@ import java.util.*
 plugins {
     `java-gradle-plugin`
     `kotlin-dsl`
-    `kotlin-dsl-precompiled-script-plugins`
+//    `java-gradle-plugin`
+//    `java-library`
+//    alias(libs.plugins.kotlinDSLPlugin)
+//    alias(libs.plugins.springBootPlugin)
+//    alias(libs.plugins.springDepMgmtPlugin)
+//    alias(libs.plugins.kotlinJvmPlugin)
+//    alias(libs.plugins.kotlinSerializationPlugin)
+//    alias(libs.plugins.kotlinSpringPlugin)
+//    alias(libs.plugins.kotlinNoArgPlugin)
+//    alias(libs.plugins.kotlinxDataframePlugin)
+//    alias(libs.plugins.kotlinBenchmarkPlugin)
+//    alias(libs.plugins.javaTestFixture)
+//    alias(libs.plugins.jfrogPlugin)
+//    `kotlin-dsl-precompiled-script-plugins`
+//    alias(testLibs.plugins.koTestPlugin)
+//    `java-test-fixtures`
 }
+dependencies {
+    implementation(plugin(libs.plugins.springBootPlugin))
+//    implementation(plugin(libs.plugins.kotlinDSLPlugin))
+    testImplementation(testLibs.bundles.junitTestBundle)
+}
+//// Helper function that transforms a Gradle Plugin alias from a
+//// Version Catalog into a valid dependency notation for buildSrc
+fun DependencyHandlerScope.plugin(plugin: Provider<PluginDependency>) =
+    plugin.map {
+        when(it.pluginId) {
+            "org.springframework.boot" -> "${it.pluginId}:spring-boot-gradle-plugin:${it.version}"
+            else -> "${it.pluginId}:${it.pluginId}.gradle.plugin:${it.version}"
+        }.apply {
+            println(">>>>From extension DependencyHandlerScope.plugin method: $this")
+        }
+    }
+
 fun property(propFile: String): Properties =
     (File(propFile) to Properties()).let { pair ->
         if (!pair.first.exists()){
@@ -45,25 +77,25 @@ repositories {
     }
     setMavenRepo(this)
 }
-dependencies {
-    val props: Properties = property("${rootProject.projectDir}/plugin.version.properties")
-    val kotlinVersion: String by props
-    val springBootVersion: String by props
-    val springDepMgmtVersion: String by props
-    val spotlessVersion: String by props
-    val jfrogVersion: String by props
-    val sonarQubeVersion: String by props
-    val openAPIToolsVersion: String by props
-    val kotlinKoverVersion: String by props
-    val kotlinxBenchmarkVersion: String by props
-
-    implementation("org.springframework.boot:spring-boot-gradle-plugin:$springBootVersion")
-    implementation("io.spring.dependency-management:io.spring.dependency-management.gradle.plugin:$springDepMgmtVersion")
-    implementation("org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion")
-    implementation("org.jetbrains.kotlin.jvm:org.jetbrains.kotlin.jvm.gradle.plugin:$kotlinVersion")
-    implementation("org.jetbrains.kotlin.plugin.spring:org.jetbrains.kotlin.plugin.spring.gradle.plugin:$kotlinVersion")
-    implementation("org.jetbrains.kotlin:kotlin-allopen:$kotlinVersion")
-    implementation("org.jetbrains.kotlin.plugin.noarg:org.jetbrains.kotlin.plugin.noarg.gradle.plugin:$kotlinVersion")
-    implementation("org.jetbrains.kotlinx.benchmark:org.jetbrains.kotlinx.benchmark.gradle.plugin:$kotlinxBenchmarkVersion")
-    implementation("com.jfrog.artifactory:com.jfrog.artifactory.gradle.plugin:$jfrogVersion")
-}
+//dependencies {
+//    val props: Properties = property("${rootProject.projectDir}/plugin.version.properties")
+//    val kotlinVersion: String by props
+//    val springBootVersion: String by props
+//    val springDepMgmtVersion: String by props
+//    val spotlessVersion: String by props
+//    val jfrogVersion: String by props
+//    val sonarQubeVersion: String by props
+//    val openAPIToolsVersion: String by props
+//    val kotlinKoverVersion: String by props
+//    val kotlinxBenchmarkVersion: String by props
+//
+//    implementation("org.springframework.boot:spring-boot-gradle-plugin:$springBootVersion")
+//    implementation("io.spring.dependency-management:io.spring.dependency-management.gradle.plugin:$springDepMgmtVersion")
+//    implementation("org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion")
+//    implementation("org.jetbrains.kotlin.jvm:org.jetbrains.kotlin.jvm.gradle.plugin:$kotlinVersion")
+//    implementation("org.jetbrains.kotlin.plugin.spring:org.jetbrains.kotlin.plugin.spring.gradle.plugin:$kotlinVersion")
+//    implementation("org.jetbrains.kotlin:kotlin-allopen:$kotlinVersion")
+//    implementation("org.jetbrains.kotlin.plugin.noarg:org.jetbrains.kotlin.plugin.noarg.gradle.plugin:$kotlinVersion")
+//    implementation("org.jetbrains.kotlinx.benchmark:org.jetbrains.kotlinx.benchmark.gradle.plugin:$kotlinxBenchmarkVersion")
+//    implementation("com.jfrog.artifactory:com.jfrog.artifactory.gradle.plugin:$jfrogVersion")
+//}

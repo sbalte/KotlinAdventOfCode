@@ -5,7 +5,7 @@ package com.wellsfargo.str.project
 import com.wellsfargo.str.gradle.GradleExtension.implementation
 import com.wellsfargo.str.gradle.GradleExtension.testImplementation
 import com.wellsfargo.str.project.RegHubBuildProject.handleProjectDepWithSharedAdapter
-import gradle.kotlin.dsl.accessors._b50274935e55e8b5c1ce69d3499a506a.testFixturesApi
+//import gradle.kotlin.dsl.accessors._b50274935e55e8b5c1ce69d3499a506a.testFixturesApi
 import org.gradle.api.artifacts.dsl.DependencyHandler
 import org.gradle.kotlin.dsl.project
 
@@ -25,7 +25,7 @@ object ReportPlatformBuildProject {
     private fun handleProjectDepWithPlatformShared(configuration: DependencyHandler) =
         with(configuration) {
             implementation(project(sharedReportPlatformProjectName))
-            testFixturesApi(testFixtures(project(sharedReportPlatformProjectName)))
+//            testFixturesApi(testFixtures(project(sharedReportPlatformProjectName)))
             testImplementation(testFixtures(project(sharedReportPlatformProjectName)))
         }
 
@@ -34,7 +34,7 @@ object ReportPlatformBuildProject {
             handleProjectDepWithSharedAdapter(this)
             handleProjectDepWithPlatformShared(this)
             implementation(project(endurTradeAdapterProjectName))
-            testFixturesApi(testFixtures(project(endurTradeAdapterProjectName)))
+//            testFixturesApi(testFixtures(project(endurTradeAdapterProjectName)))
             testImplementation(testFixtures(project(endurTradeAdapterProjectName)))
         }
 }

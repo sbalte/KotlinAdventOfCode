@@ -8,7 +8,7 @@ import com.wellsfargo.str.project.ProjectConstant.EMPTY_STRING
 import com.wellsfargo.str.project.ProjectConstant.plainSuffix
 import com.wellsfargo.str.project.ProjectGroupName.strBase
 import com.wellsfargo.str.project.StrLibraryDependency.handleProjectDependencies
-import gradle.kotlin.dsl.accessors._b50274935e55e8b5c1ce69d3499a506a.testFixturesApi
+//import gradle.kotlin.dsl.accessors._b50274935e55e8b5c1ce69d3499a506a.testFixturesApi
 import org.gradle.api.artifacts.dsl.DependencyHandler
 import org.gradle.jvm.tasks.Jar
 import org.gradle.kotlin.dsl.project
@@ -22,7 +22,7 @@ object StrSharedBuildProject {
         with(configuration) {
             handleProjectDependencies(this)
             implementation(project(strSharedProjectName))
-            testFixturesApi(testFixtures(project(strSharedProjectName)))
+//            testFixturesApi(testFixtures(project(strSharedProjectName)))
             testImplementation(testFixtures(project(strSharedProjectName)))
         }
 

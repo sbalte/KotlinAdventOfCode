@@ -3,7 +3,7 @@ package com.wellsfargo.str.project
 import com.wellsfargo.str.gradle.GradleExtension.implementation
 import com.wellsfargo.str.gradle.GradleExtension.testImplementation
 import com.wellsfargo.str.project.StrSharedBuildProject.handleProjectDepWithShared
-import gradle.kotlin.dsl.accessors._b50274935e55e8b5c1ce69d3499a506a.testFixturesApi
+//import gradle.kotlin.dsl.accessors._2f6785c9131286d9d1030ac08c37b2f3.testFixturesApi
 import org.gradle.api.artifacts.dsl.DependencyHandler
 import org.gradle.kotlin.dsl.project
 
@@ -23,7 +23,7 @@ object RegHubBuildProject {
         with(configuration) {
             handleProjectDepWithShared(this)
             implementation(project(regHubSharedProjectName))
-            testFixturesApi(testFixtures(project(regHubSharedProjectName)))
+//            testFixturesApi(testFixtures(project(regHubSharedProjectName)))
             testImplementation(testFixtures(project(regHubSharedProjectName)))
         }
 }

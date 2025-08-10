@@ -1,12 +1,13 @@
-import org.springframework.boot.gradle.tasks.bundling.BootJar
-
+//import org.springframework.boot.gradle.tasks.bundling.BootJar
+//
 plugins {
     `java-library`
-    id("str.plugin")
+//    `java-library`
+//    id("str.plugin")
 }
-tasks.jar {
-    enabled = true
-}
-tasks.withType<BootJar> {
-    enabled = false
-}
+//tasks.jar {
+//    enabled = true
+//}
+//tasks.withType<BootJar> {
+//    enabled = false
+//}

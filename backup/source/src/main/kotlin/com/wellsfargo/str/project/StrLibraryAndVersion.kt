@@ -56,7 +56,7 @@ import com.wellsfargo.str.project.SpringVersion.jaxbAPIVersion
 import com.wellsfargo.str.project.SpringVersion.jaxbVersion
 import com.wellsfargo.str.project.SpringVersion.springModulithVersion
 import org.gradle.api.JavaVersion
-import org.jetbrains.kotlin.gradle.dsl.JvmTarget
+//import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 import java.util.*
 
 const val projectReleaseVersion = "1.0.0-SNAPSHOT"
@@ -73,7 +73,7 @@ fun manifestMap(projectName: String, projectVersion: Any) : Map<String, Any> {
 fun String.lowerFirstChar() = replaceFirstChar(Char::titlecase)
 object ProjectJava {
     private val javaVersionPair = JavaVersion.VERSION_17 to 17
-    val jvmTargetProp by lazy { JvmTarget.JVM_17 }
+    val jvmTargetProp by lazy { "17" }
     val javaVersion by lazy { javaVersionPair.first }
     val sourceCompatibilityVersion by lazy { javaVersionPair.first }
     val targetCompatibilityVersion by lazy { javaVersionPair.first }

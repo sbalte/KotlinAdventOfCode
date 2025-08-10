@@ -44,7 +44,7 @@ import com.wellsfargo.str.project.TestDep.testStriKtJackson
 import com.wellsfargo.str.project.TestDep.testStriKtJvm
 import com.wellsfargo.str.project.TestDep.testStriKtMockk
 import com.wellsfargo.str.project.TestDep.testStriKtSpring
-import gradle.kotlin.dsl.accessors._b50274935e55e8b5c1ce69d3499a506a.testFixturesApi
+//import gradle.kotlin.dsl.accessors._b50274935e55e8b5c1ce69d3499a506a.testFixturesApi
 import org.gradle.api.artifacts.dsl.DependencyHandler
 import org.gradle.kotlin.dsl.kotlin
 import org.gradle.kotlin.dsl.project
@@ -209,10 +209,11 @@ object StrLibraryDependency {
                 testApprovalPath to testImpl
             ).map { p ->
                 when (p.second) {
-                    testImpl -> testFixturesApi(p.first)
+//                    testImpl -> testFixturesApi(p.first)
                     testImplTestFixture -> {}
-                    testImplKotlin -> testFixturesApi(kotlin(p.first))
-                    testImplPlatform -> testFixturesApi(platform(p.first))
+                    else -> {}
+//                    testImplKotlin -> testFixturesApi(kotlin(p.first))
+//                    testImplPlatform -> testFixturesApi(platform(p.first))
                 }; p
             }.map { p ->
                 when (p.second) {
