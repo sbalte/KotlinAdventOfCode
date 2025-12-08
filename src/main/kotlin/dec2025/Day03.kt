@@ -19,9 +19,6 @@ object DayThree {
                 bank.filter { (first, _) -> first != maxPair.first } .maxBy { (_, second) -> second }
                     .let { sMaxPair ->
                         listOf(maxPair, sMaxPair).sortedBy { (f, _) -> f }
-                            .also { sList ->
-                                println(sList)
-                            }
                             .joinToString(EMPTY_STRING) { p -> p.second.toString().also { println("Pair $p") } }.toLong().apply { println(">>>>$this") }
                     }
             }
