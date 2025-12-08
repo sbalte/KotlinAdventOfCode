@@ -1,3 +1,6 @@
+import java.math.BigInteger
+import java.security.MessageDigest
+
 @Suppress("unused")
 object FileUtil {
     fun readInputFileLine(dayYearPair: Pair<AdventOfCodeDay, AdventOfCodeYear>): List<String> =
@@ -8,6 +11,10 @@ object FileUtil {
         this::class.java.getResourceAsStream(fileName)!!.bufferedReader().readLines()
 }
 
+fun String.md5() = BigInteger(1, MessageDigest.getInstance("MD5").digest(toByteArray()))
+    .toString(16)
+    .padStart(32, '0')
+
 object AdventOfCodeConstant {
     const val EMPTY_STRING = ""
     const val SPACE = " "
@@ -17,6 +24,7 @@ object AdventOfCodeConstant {
     const val THREE = 3
     val SPACE_SPLIT_REGEX = "\\s+".toRegex()
     val COMMA_SPLIT_REGEX = ",".toRegex()
+    val DASH_SPLIT_REGEX = "-".toRegex()
 }
 
 enum class AdventPart(val displayStr: String) {
@@ -28,11 +36,17 @@ enum class AdventOfCodeYear(val year: Int) {
     operator fun invoke() = year
 }
 enum class AdventOfCodeDay(val day: Int) {
-    DAY_ONE(1), DAY_TWO(2), DAY_THREE(3), DAY_FOUR(4), DAY_FIVE(5), DAY_SIX(6);
+    DAY_ONE(1), DAY_TWO(2), DAY_THREE(3), DAY_FOUR(4), DAY_FIVE(5), DAY_SIX(6), DAY_NINETEEN(19);
     operator fun invoke() = day
 }
 operator fun <U, V, R> R.plus(pair: Pair<U, V>): Pair<R, Pair<U, V>> = this to pair
 operator fun <U, V, R> Pair<U, V>.plus(item: R): Pair<Pair<U, V>, R> = this to item
+fun <A, B> Pair<A, B>.swap() = second to first
+fun <U, R> Pair<U, U>.mapBoth(block: (U) -> R): Pair<R, R> = block(first) to block(second)
 fun <U, V, R> Pair<U, V>.map(block: (U) -> R): Pair<R, V> = block(first) to second
 fun <U, V, R> Pair<U, V>.mapSecond(block: (V) -> R): Pair<U, R> = first to block(second)
 
+//List
+inline fun <T> MutableList<T>.mapInPlace(transform: (T) -> T) = forEachIndexed { idx, t -> this[idx] = transform(t) }
+inline fun <T> MutableList<T>.mapInPlaceIndexed(transform: (idx: Int, T) -> T) =
+    forEachIndexed { idx, t -> this[idx] = transform(idx, t) }
