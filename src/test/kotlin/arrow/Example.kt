@@ -9,7 +9,7 @@ class ExampleTest {
         buildMap {
             putAll((1..10).map { it to it * 2 })
         }.also { println(it) }
-        (1..10).flatMap { item ->''
+        (1..10).flatMap { item ->
             (item to item * 2)
                 .run { listOf(this, this.mapSecond { it + 1 }) }
         }.toList()
