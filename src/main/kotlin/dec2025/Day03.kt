@@ -11,8 +11,8 @@ object DayThree {
             .filter { it.isNotEmpty() }
             .map { it.toList().mapIndexed { index, ch -> index to ch.digitToInt() } }.asSequence()
     private fun maxJoltage(bank: List<Pair<Int, Int>>, batteryChoiceNum: Int): Long =
-        ((bank.size - batteryChoiceNum)..bank.size.dec()).fold((0 to EMPTY_STRING)) { acc, mIndex ->
-            bank.drop(acc.first).takeWhile { (f, _) -> f <= mIndex }.maxBy { (_, s) -> s }.let { (f, s) -> f.inc() to acc.second + s }
+        ((bank.size - batteryChoiceNum)..bank.size.dec()).fold(0 to EMPTY_STRING) { (f, result), mIndex ->
+            bank.drop(f).takeWhile { (f, _) -> f <= mIndex }.maxBy { (_, s) -> s }.let { (f, s) -> f.inc() to result + s }
         }.let { (_, s) -> s.toLong() }
             .also { println(">>>>Max Joltage: $it") }
 
