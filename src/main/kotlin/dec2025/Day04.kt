@@ -62,8 +62,9 @@ object DayFour {
     }.get()
 }
 
-fun main() {
+fun main(): Unit = paperMaze().let { origMap ->
     //answer: 1424
-//    DayFour.partOne(paperMaze()).also { println("Day Four Part One Answer: ${it.first}") }
-    DayFour.partTwo(paperMaze()).also { println("Day Four Part Two Answer: $it") }
+    DayFour.partOne(origMap).also { println("Day Four Part One Answer: ${it.first}") }
+    //answer: 8727
+    DayFour.partTwo(origMap).also { println("Day Four Part Two Answer: $it") }
 }
