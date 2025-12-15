@@ -22,7 +22,7 @@ object DayThree {
 
 fun main() {
     //partOne correct answer: 16,842
-    DayFour.partOne().also { println("Day Three Part One Answer: $it") }
+    DayFive.partOne().also { println("Day Three Part One Answer: $it") }
     //partTwo correct answer: 167523425665348
-    DayFour.partTwo().also { println("Day Three Part Two Answer: $it") }
+    DayFive.partTwo().also { println("Day Three Part Two Answer: $it") }
 }
