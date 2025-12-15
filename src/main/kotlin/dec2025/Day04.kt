@@ -6,7 +6,6 @@ import FileUtil.readInputFileLine
 import dec2025.DayFour.MazeChar.EMPTY
 import dec2025.DayFour.MazeChar.ROLL
 import dec2025.DayFour.paperMaze
-import java.util.concurrent.atomic.AtomicLong
 
 object DayFour {
     private const val ZERO = 0
@@ -53,13 +52,12 @@ object DayFour {
         }.let { counter -> counter to cRolls }
     }
 
-    fun partTwo(origMap: MutableMap<Pair<Int, Int>, Char>): Long = AtomicLong(0L).also { counter ->
-        while(partOne(origMap)
-            .let { (result, cRolls) ->
+    fun partTwo(origMap: MutableMap<Pair<Int, Int>, Char>): Long =
+        generateSequence { partOne(origMap).takeIf { (result, _) -> result > 0 } }
+            .sumOf { (result, cRolls) ->
                 cRolls.forEach { xy -> origMap[xy] = EMPTY() }
-                counter.addAndGet(result); result } > 0
-        );
-    }.get()
+                result
+            }
 }
 
 fun main(): Unit = paperMaze().let { origMap ->
