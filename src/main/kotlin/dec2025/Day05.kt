@@ -32,21 +32,22 @@ object DayFive {
             if (pRange.first in nRange || pRange.last in nRange || nRange.first in pRange || nRange.last in pRange)
                 Triple(nRange, min(pRange.first, nRange.first)..max(pRange.last, nRange.last), true)
             else Triple(nRange, nRange, false)
-        val result: AtomicLong = AtomicLong(0L)
-        repeat(ranges.size) { _ ->
-            ranges.removeFirst().let { pRange ->
-                ranges.firstOrNull { nRange ->
-                    isRangeOverlap(pRange, nRange).let { triple ->
-                        if (triple.third) {
-                            ranges.remove(triple.first)
-                            ranges.add(triple.second)
+        (AtomicLong(0L) to ranges.size).let { (result, iSize) ->
+            repeat(iSize) { _ ->
+                ranges.removeFirst().let { pRange ->
+                    ranges.firstOrNull { nRange ->
+                        isRangeOverlap(pRange, nRange).let { triple ->
+                            if (triple.third) {
+                                ranges.remove(triple.first)
+                                ranges.add(triple.second)
+                            }
+                            triple.third
                         }
-                        triple.third
-                    }
-                }?: result.addAndGet(getRangeSize(pRange))
+                    } ?: result.addAndGet(getRangeSize(pRange))
+                }
             }
+            result.get()
         }
-        result.get()
     }
 }
 
