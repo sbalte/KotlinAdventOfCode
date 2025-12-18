@@ -23,7 +23,7 @@ object DayOne {
 
     fun partOne(listPair: List<Pair<String, Long>>): Long = listPair.let {
         AtomicLong(50L).let { zeroCount ->
-            listPair.asSequence().map { (direction, move) ->
+            listPair.asSequence().map { (_, move) ->
                 zeroCount.set(((zeroCount.get() + move) + range.last) % range.last)
                     .run { zeroCount }
             }.count { it.get() == range.first }.toLong()
@@ -44,7 +44,7 @@ object DayOne {
                                 didCrossZero(direction, cPosition, pPosition))
                     ) ONE else range.first
 
-            cMove.map { (direction, origMove, numRotation, move) ->
+            cMove.map { (direction, _, numRotation, move) ->
                     Tuple5(direction, zeroCount.get(), numRotation,
                         zeroCount.set(((zeroCount.get() + move) + range.last) % range.last).let { zeroCount.get() }, move)
             }.sumOf { (direction, pPosition, numRotation, cPosition, _) ->
