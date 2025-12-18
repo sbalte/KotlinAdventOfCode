@@ -27,7 +27,7 @@ object DayFive {
     }
 
     private fun getRangeSize(range: LongRange): Long = (range.last - range.first).inc()
-    private fun isRangeOverlap(pRange: LongRange, nRange: LongRange,): Triple<LongRange, LongRange, Boolean> =
+    private fun isRangeOverlap(pRange: LongRange, nRange: LongRange): Triple<LongRange, LongRange, Boolean> =
         if (pRange.first in nRange || pRange.last in nRange || nRange.first in pRange || nRange.last in pRange)
             Triple(nRange, min(pRange.first, nRange.first)..max(pRange.last, nRange.last), true)
         else Triple(nRange, nRange, false)

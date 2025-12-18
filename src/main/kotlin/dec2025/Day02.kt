@@ -30,7 +30,7 @@ object DayTwo {
                     first to second.chunked(cSize).let { cList ->
                         cList.all { it == cList.first() }
                     }
-                }.firstOrNull { (first, second) -> second }?.first?.also { println(">>>>$it is invalid and passes chunks repeated test") } ?: 0
+                }.firstOrNull { (_, second) -> second }?.first?.also { println(">>>>$it is invalid and passes chunks repeated test") } ?: 0
             }
     }.distinct().sum()
 }
