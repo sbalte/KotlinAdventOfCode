@@ -48,10 +48,10 @@ object DayOne {
                     Tuple5(direction, zeroCount.get(), numRotation,
                         zeroCount.set(((zeroCount.get() + move) + range.last) % range.last).let { zeroCount.get() }, move)
             }.sumOf { (direction, pPosition, numRotation, cPosition, move) ->
-                ((if (cPosition == range.first) ONE else range.first) + abs(numRotation) +
+                (if (cPosition == range.first) ONE else range.first) + abs(numRotation) +
                         if ((cPosition != range.first && pPosition != range.first &&
                                     didCrossZero(direction, cPosition, pPosition))
-                        ) ONE else range.first)
+                        ) ONE else range.first
 //                    .also { numZero ->
 //                        println("Direction: $direction, PrevP: $pPosition, CurrP: $cPosition, CurrMove: $move, NumRotation: $numRotation, NumZero added: $numZero")
 //                    }
