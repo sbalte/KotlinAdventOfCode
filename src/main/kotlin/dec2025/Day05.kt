@@ -40,6 +40,7 @@ object DayFive {
                         isRangeOverlap(pRange, nRange).let { triple ->
                             if (triple.third) {
                                 ranges.remove(triple.first)
+
                                 ranges.add(triple.second)
                             }
                             triple.third
