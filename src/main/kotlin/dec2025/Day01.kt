@@ -4,39 +4,66 @@ import AdventOfCodeDay
 import AdventOfCodeYear
 import FileUtil.readInputFileLine
 import arrow.atomic.AtomicLong
-import kotlin.math.absoluteValue
+import arrow.core.Tuple4
+import arrow.core.Tuple5
+import kotlin.math.abs
+
 
 object DayOne {
-    private val range: LongRange = 0L..100L
+    const val RIGHT_DIRECTION = "R"
+    const val LEFT_DIRECTION = "L"
+    const val ONE = 1L
+    val range: LongRange = 0L..100L
     fun numListPair(): List<Pair<String, Long>> =
         readInputFileLine(AdventOfCodeDay.DAY_ONE to AdventOfCodeYear.YEAR_2025)
             .filter { it.isNotEmpty() }
             .map { line ->
                 line.split("(?<=[^0-9])(?=[0-9])".toRegex())
-                    .let { (a, b) -> a to b.toLong().let { (if (a == "L") -1 else 1) * it } }
+                    .let { (a, b) -> a to b.toLong().let { (if (a == LEFT_DIRECTION) -ONE else ONE) * it } }
             }
 
     fun partOne(listPair: List<Pair<String, Long>>): Long = listPair.let {
         AtomicLong(50L).let { zeroCount ->
             listPair.asSequence().map { (direction, move) ->
-                zeroCount.set(((zeroCount.get() + move) + range.last()).mod(range.last()))
+                zeroCount.set(((zeroCount.get() + move) + range.last) % range.last)
                     .run {
-                        println(">>>>Dial rotated $direction for ${move.absoluteValue} position and currently pointing at ${zeroCount.get()}")
+//                        println(">>>>Dial rotated $direction for ${move.absoluteValue} position and currently pointing at ${zeroCount.get()}")
                         zeroCount
                     }
-            }.count { it.get() == 0L }.toLong()
+            }.count { it.get() == range.first }.toLong()
         }
     }
 
     @Suppress("unused")
-    fun partTwo(listPair: List<Pair<String, Long>>): List<LongRange> = "11-22,95-115".split(",").map {
-        it.split("-").run { LongRange(this.first().toLong(), this.last().toLong()) }
-    }
+    fun partTwo(listPair: List<Pair<String, Long>>): Long = (listPair
+        .map { p -> Tuple4(p.first, p.second, p.second/range.last, p.second%range.last)
+//            .also { println(it) }
+        }.asSequence() to AtomicLong(50L))
+        .let { (cMove, zeroCount) ->
+            fun didCrossZero(direction: String, cPosition: Long, pPosition: Long): Boolean =
+                (direction == RIGHT_DIRECTION && cPosition < pPosition) ||
+                        (direction == LEFT_DIRECTION && cPosition > pPosition)
+
+            cMove.map { (direction, origMove, numRotation, move) ->
+                    Tuple5(direction, zeroCount.get(), numRotation,
+                        zeroCount.set(((zeroCount.get() + move) + range.last) % range.last).let { zeroCount.get() }, move)
+            }.sumOf { (direction, pPosition, numRotation, cPosition, move) ->
+                ((if (cPosition == range.first) ONE else range.first) + abs(numRotation) +
+                        if ((cPosition != range.first && pPosition != range.first &&
+                                    didCrossZero(direction, cPosition, pPosition))
+                        ) ONE else range.first)
+//                    .also { numZero ->
+//                        println("Direction: $direction, PrevP: $pPosition, CurrP: $cPosition, CurrMove: $move, NumRotation: $numRotation, NumZero added: $numZero")
+//                    }
+            }
+        }
 }
 
 fun main() {
     DayOne.numListPair().let { listPair ->
+        //answer: 1043
         DayOne.partOne(listPair).also { println("Day One Part One Answer: $it") }
-//        DayOne.partTwo(listPair).also { println("Day One Part Two Answer: $it") }
+        //answer: 5963
+        DayOne.partTwo(listPair).also { println("Day One Part Two Answer: $it") }
     }
 }

@@ -26,12 +26,13 @@ object DayFive {
             .map { 1L }.sumOf { it }
     }
 
+    private fun getRangeSize(range: LongRange): Long = (range.last - range.first).inc()
+    private fun isRangeOverlap(pRange: LongRange, nRange: LongRange,): Triple<LongRange, LongRange, Boolean> =
+        if (pRange.first in nRange || pRange.last in nRange || nRange.first in pRange || nRange.last in pRange)
+            Triple(nRange, min(pRange.first, nRange.first)..max(pRange.last, nRange.last), true)
+        else Triple(nRange, nRange, false)
+
     fun partTwo(ingredientsList: Pair<MutableList<LongRange>, List<Long>>) = ingredientsList.let { (ranges, _) ->
-        fun getRangeSize(range: LongRange): Long = (range.last - range.first).inc()
-        fun isRangeOverlap(pRange: LongRange, nRange: LongRange,): Triple<LongRange, LongRange, Boolean> =
-            if (pRange.first in nRange || pRange.last in nRange || nRange.first in pRange || nRange.last in pRange)
-                Triple(nRange, min(pRange.first, nRange.first)..max(pRange.last, nRange.last), true)
-            else Triple(nRange, nRange, false)
         (AtomicLong(0L) to ranges.size).let { (result, iSize) ->
             repeat(iSize) { _ ->
                 ranges.removeFirst().let { pRange ->
