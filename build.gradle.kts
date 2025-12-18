@@ -1,5 +1,5 @@
 plugins {
-	kotlin("jvm") version "2.1.0"
+	kotlin("jvm") version "2.3.0"
 }
 
 group = "com.balte.kotlin.adventofcode"
@@ -17,7 +17,7 @@ repositories {
 
 dependencies {
 	val quiverVersion = "0.5.13"
-	implementation(platform("io.arrow-kt:arrow-stack:2.2.0"))
+	implementation(platform("io.arrow-kt:arrow-stack:2.2.1.1"))
 	implementation("io.arrow-kt:arrow-core")
 	implementation("io.arrow-kt:arrow-eval")
 	implementation("io.arrow-kt:arrow-fx-coroutines")
