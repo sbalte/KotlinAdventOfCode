@@ -8,7 +8,6 @@ import arrow.core.Tuple4
 import arrow.core.Tuple5
 import kotlin.math.abs
 
-
 object DayOne {
     const val RIGHT_DIRECTION = "R"
     const val LEFT_DIRECTION = "L"
@@ -26,10 +25,7 @@ object DayOne {
         AtomicLong(50L).let { zeroCount ->
             listPair.asSequence().map { (direction, move) ->
                 zeroCount.set(((zeroCount.get() + move) + range.last) % range.last)
-                    .run {
-//                        println(">>>>Dial rotated $direction for ${move.absoluteValue} position and currently pointing at ${zeroCount.get()}")
-                        zeroCount
-                    }
+                    .run { zeroCount }
             }.count { it.get() == range.first }.toLong()
         }
     }
@@ -37,24 +33,26 @@ object DayOne {
     @Suppress("unused")
     fun partTwo(listPair: List<Pair<String, Long>>): Long = (listPair
         .map { p -> Tuple4(p.first, p.second, p.second/range.last, p.second%range.last)
-//            .also { println(it) }
         }.asSequence() to AtomicLong(50L))
         .let { (cMove, zeroCount) ->
             fun didCrossZero(direction: String, cPosition: Long, pPosition: Long): Boolean =
                 (direction == RIGHT_DIRECTION && cPosition < pPosition) ||
                         (direction == LEFT_DIRECTION && cPosition > pPosition)
+            fun numZeroCrossed(
+                cPosition: Long,
+                numRotation: Long,
+                pPosition: Long,
+                direction: String
+            ): Long = (if (cPosition == range.first) ONE else range.first) + abs(numRotation) +
+                    if ((cPosition != range.first && pPosition != range.first &&
+                                didCrossZero(direction, cPosition, pPosition))
+                    ) ONE else range.first
 
             cMove.map { (direction, origMove, numRotation, move) ->
                     Tuple5(direction, zeroCount.get(), numRotation,
                         zeroCount.set(((zeroCount.get() + move) + range.last) % range.last).let { zeroCount.get() }, move)
-            }.sumOf { (direction, pPosition, numRotation, cPosition, move) ->
-                (if (cPosition == range.first) ONE else range.first) + abs(numRotation) +
-                        if ((cPosition != range.first && pPosition != range.first &&
-                                    didCrossZero(direction, cPosition, pPosition))
-                        ) ONE else range.first
-//                    .also { numZero ->
-//                        println("Direction: $direction, PrevP: $pPosition, CurrP: $cPosition, CurrMove: $move, NumRotation: $numRotation, NumZero added: $numZero")
-//                    }
+            }.sumOf { (direction, pPosition, numRotation, cPosition, _) ->
+                numZeroCrossed(cPosition, numRotation, pPosition, direction)
             }
         }
 }
