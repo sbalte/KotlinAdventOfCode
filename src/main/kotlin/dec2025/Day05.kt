@@ -32,7 +32,7 @@ object DayFive {
             Triple(nRange, min(pRange.first, nRange.first)..max(pRange.last, nRange.last), true)
         else Triple(nRange, nRange, false)
 
-    fun partTwo(ingredientsList: Pair<MutableList<LongRange>, List<Long>>) = ingredientsList.let { (ranges, _) ->
+    fun partTwo(ingredientsList: Pair<MutableList<LongRange>, List<Long>>): Long = ingredientsList.let { (ranges, _) ->
         (AtomicLong(0L) to ranges.size).let { (result, iSize) ->
             repeat(iSize) { _ ->
                 ranges.removeFirst().let { pRange ->
