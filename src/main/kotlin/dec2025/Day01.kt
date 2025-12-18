@@ -32,14 +32,14 @@ object DayOne {
 
     @Suppress("unused")
     fun partTwo(listPair: List<Pair<String, Long>>): Long = (listPair
-        .map { p -> Tuple4(p.first, p.second, p.second/range.last, p.second%range.last)
+        .map { p -> Tuple4(p.first, p.second, abs(p.second/range.last), p.second%range.last)
         }.asSequence() to AtomicLong(50L))
         .let { (cMove, zeroCount) ->
             fun didCrossZero(direction: String, cPosition: Long, pPosition: Long): Boolean =
                 (direction == RIGHT_DIRECTION && cPosition < pPosition) ||
                         (direction == LEFT_DIRECTION && cPosition > pPosition)
             fun numZeroCrossed(cPosition: Long, numRotation: Long, pPosition: Long, direction: String): Long =
-                (if (cPosition == range.first) ONE else range.first) + abs(numRotation) +
+                (if (cPosition == range.first) ONE else range.first) + numRotation +
                     if ((cPosition != range.first && pPosition != range.first &&
                                 didCrossZero(direction, cPosition, pPosition))
                     ) ONE else range.first
