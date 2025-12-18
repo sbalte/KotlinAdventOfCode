@@ -38,12 +38,8 @@ object DayOne {
             fun didCrossZero(direction: String, cPosition: Long, pPosition: Long): Boolean =
                 (direction == RIGHT_DIRECTION && cPosition < pPosition) ||
                         (direction == LEFT_DIRECTION && cPosition > pPosition)
-            fun numZeroCrossed(
-                cPosition: Long,
-                numRotation: Long,
-                pPosition: Long,
-                direction: String
-            ): Long = (if (cPosition == range.first) ONE else range.first) + abs(numRotation) +
+            fun numZeroCrossed(cPosition: Long, numRotation: Long, pPosition: Long, direction: String): Long =
+                (if (cPosition == range.first) ONE else range.first) + abs(numRotation) +
                     if ((cPosition != range.first && pPosition != range.first &&
                                 didCrossZero(direction, cPosition, pPosition))
                     ) ONE else range.first
