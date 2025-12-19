@@ -30,7 +30,6 @@ object DayOne {
         }
     }
 
-    @Suppress("unused")
     fun partTwo(listPair: List<Pair<String, Long>>): Long = (listPair
         .map { p -> Tuple4(p.first, p.second, abs(p.second/range.last), p.second%range.last)
         }.asSequence() to AtomicLong(50L))
