@@ -6,8 +6,8 @@ import AdventOfCodeYear
 import FileUtil.readInputFileLine
 import arrow.atomic.AtomicLong
 import dec2025.DayFive.readIngredientFromFile
-import kotlin.math.max
-import kotlin.math.min
+import isRangeOverlap
+import rangeSize
 
 object DayFive {
     internal fun readIngredientFromFile(): Pair<MutableList<LongRange>, List<Long>> =
@@ -25,14 +25,6 @@ object DayFive {
         ingredients.filter { ingredient -> ranges.any { range -> ingredient in range } }
             .map { 1L }.sumOf { it }
     }
-
-    fun LongRange.rangeSize(): Long = (this.last - this.first).inc()
-    fun LongRange.mergeWith(other: LongRange): LongRange = min(this.first, other.first)..max(this.last, other.last)
-    fun LongRange.overlapsWith(other: LongRange): Boolean = this.first in other || this.last in other || other.first in this || other.last in this
-    fun LongRange.isRangeOverlap(nRange: LongRange): Triple<LongRange, LongRange, Boolean> =
-        if (this.overlapsWith(nRange))
-            Triple(nRange, nRange.mergeWith(this), true)
-        else Triple(nRange, nRange, false)
 
     fun partTwo(ingredientsList: Pair<MutableList<LongRange>, List<Long>>): Long = ingredientsList.let { (ranges, _) ->
         (AtomicLong(0L) to ranges.size).let { (result, iSize) ->

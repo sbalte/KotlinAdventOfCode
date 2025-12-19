@@ -1,5 +1,7 @@
 import java.math.BigInteger
 import java.security.MessageDigest
+import kotlin.math.max
+import kotlin.math.min
 
 @Suppress("unused")
 object FileUtil {
@@ -50,3 +52,12 @@ fun <U, V, R> Pair<U, V>.mapSecond(block: (V) -> R): Pair<U, R> = first to block
 inline fun <T> MutableList<T>.mapInPlace(transform: (T) -> T) = forEachIndexed { idx, t -> this[idx] = transform(t) }
 inline fun <T> MutableList<T>.mapInPlaceIndexed(transform: (idx: Int, T) -> T) =
     forEachIndexed { idx, t -> this[idx] = transform(idx, t) }
+
+//LongRange
+fun LongRange.rangeSize(): Long = (this.last - this.first).inc()
+fun LongRange.mergeWith(other: LongRange): LongRange = min(this.first, other.first)..max(this.last, other.last)
+fun LongRange.overlapsWith(other: LongRange): Boolean = this.first in other || this.last in other || other.first in this || other.last in this
+fun LongRange.isRangeOverlap(nRange: LongRange): Triple<LongRange, LongRange, Boolean> =
+    if (this.overlapsWith(nRange))
+        Triple(nRange, nRange.mergeWith(this), true)
+    else Triple(nRange, nRange, false)
