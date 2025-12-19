@@ -26,10 +26,12 @@ object DayFive {
             .map { 1L }.sumOf { it }
     }
 
-    private fun getRangeSize(range: LongRange): Long = (range.last - range.first).inc()
-    private fun isRangeOverlap(pRange: LongRange, nRange: LongRange): Triple<LongRange, LongRange, Boolean> =
-        if (pRange.first in nRange || pRange.last in nRange || nRange.first in pRange || nRange.last in pRange)
-            Triple(nRange, min(pRange.first, nRange.first)..max(pRange.last, nRange.last), true)
+    fun LongRange.rangeSize(): Long = (this.last - this.first).inc()
+    fun LongRange.mergeWith(other: LongRange): LongRange = min(this.first, other.first)..max(this.last, other.last)
+    fun LongRange.overlapsWith(other: LongRange): Boolean = this.first in other || this.last in other || other.first in this || other.last in this
+    fun LongRange.isRangeOverlap(nRange: LongRange): Triple<LongRange, LongRange, Boolean> =
+        if (this.overlapsWith(nRange))
+            Triple(nRange, nRange.mergeWith(this), true)
         else Triple(nRange, nRange, false)
 
     fun partTwo(ingredientsList: Pair<MutableList<LongRange>, List<Long>>): Long = ingredientsList.let { (ranges, _) ->
@@ -37,7 +39,7 @@ object DayFive {
             repeat(iSize) { _ ->
                 ranges.removeFirst().let { pRange ->
                     ranges.firstOrNull { nRange ->
-                        isRangeOverlap(pRange, nRange).let { triple ->
+                        pRange.isRangeOverlap(nRange).let { triple ->
                             if (triple.third) {
                                 ranges.remove(triple.first)
 
@@ -45,7 +47,7 @@ object DayFive {
                             }
                             triple.third
                         }
-                    } ?: result.addAndGet(getRangeSize(pRange))
+                    } ?: result.addAndGet(pRange.rangeSize())
                 }
             }
             result.get()
